@@ -9,6 +9,14 @@ func main() {
 		USDToRUB = 90.5
 		EURToRUB = USDToRUB / USDToEUR
 	)
+}
 
-	fmt.Println(USDToEUR, USDToRUB, EURToRUB)
+func userInput() {
+	var str string
+	fmt.Scan(&str)
+
+}
+
+func calculate(number float64, beginCurrency string, endCurrency string) float64 {
+	return 0.00
 }
