@@ -96,7 +96,12 @@ func inputEndCurrency(beginCurrency string) string {
 			continue
 		}
 
-		if currency != beginCurrency || currency == "USD" || currency == "EUR" || currency == "RUB" {
+		if currency == beginCurrency {
+			fmt.Println("Целевая валюта не должна совпадать с исходной. Введите еще раз.")
+			continue
+		}
+
+		if currency == "USD" || currency == "EUR" || currency == "RUB" {
 			return currency
 		}
 
