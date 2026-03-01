@@ -12,11 +12,17 @@ const (
 )
 
 func main() {
+	rates := map[string]float64{
+		"USDToEUR": 0.93,
+		"USDToRUB": 90.5,
+		"EURToRUB": USDToRUB / USDToEUR,
+	}
+
 	beginCurrency := inputBeginCurrency()
 	amountCurrency := inputAmountCurrency()
 	endCurrency := inputEndCurrency(beginCurrency)
 
-	sum := calculate(amountCurrency, beginCurrency, endCurrency)
+	sum := calculate(rates, amountCurrency, beginCurrency, endCurrency)
 	fmt.Println(sum)
 }
 
@@ -26,17 +32,11 @@ func userInput() {
 
 }
 
-func calculate(amount float64, beginCurrency string, endCurrency string) float64 {
+func calculate(rates map[string]float64, amount float64, beginCurrency string, endCurrency string) float64 {
 	var sum float64
 
-	switch {
-	case beginCurrency == "USD" && endCurrency == "EUR":
-		sum = amount * USDToEUR
-	case beginCurrency == "USD" && endCurrency == "RUB":
-		sum = amount * USDToRUB
-	case beginCurrency == "EUR" && endCurrency == "RUB":
-		sum = amount * EURToRUB
-	}
+	rate := beginCurrency + "To" + endCurrency
+	sum = amount * rates[rate]
 
 	return sum
 }
