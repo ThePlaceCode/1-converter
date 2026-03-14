@@ -22,7 +22,7 @@ func main() {
 	amountCurrency := inputAmountCurrency()
 	endCurrency := inputEndCurrency(beginCurrency)
 
-	sum := calculate(rates, amountCurrency, beginCurrency, endCurrency)
+	sum := calculate(&rates, amountCurrency, beginCurrency, endCurrency)
 	fmt.Println(sum)
 }
 
@@ -32,11 +32,11 @@ func userInput() {
 
 }
 
-func calculate(rates map[string]float64, amount float64, beginCurrency string, endCurrency string) float64 {
+func calculate(rates *map[string]float64, amount float64, beginCurrency string, endCurrency string) float64 {
 	var sum float64
 
 	rate := beginCurrency + "To" + endCurrency
-	sum = amount * rates[rate]
+	sum = amount * (*rates)[rate]
 
 	return sum
 }
